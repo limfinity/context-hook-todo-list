@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+**And got the Todo inspiration from [Digitial Ocean](https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks).**
+
 ## Available Scripts
 
 In the project directory, you can run:
