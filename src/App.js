@@ -7,7 +7,7 @@ import { TodoListProvider } from './Todo/TodoListContext';
 function App() {
   return (
     <TodoListProvider>
-      <TodoList />;
+      <TodoList />
     </TodoListProvider>
   );
 }
