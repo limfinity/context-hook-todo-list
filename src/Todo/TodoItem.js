@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TodoItem({ todo, index, completeTodo, removeTodo }) {
+function TodoItem({ todo, index, toggleTodo, removeTodo }) {
   return (
     <div
       className="todo"
@@ -9,7 +9,9 @@ function TodoItem({ todo, index, completeTodo, removeTodo }) {
       {todo.text}
 
       <div>
-        <button onClick={() => completeTodo(index)}>Complete</button>
+        <button onClick={() => toggleTodo(index)}>
+          {todo.isCompleted ? 'Open' : 'Complete'}
+        </button>
         <button onClick={() => removeTodo(index)}>x</button>
       </div>
     </div>
