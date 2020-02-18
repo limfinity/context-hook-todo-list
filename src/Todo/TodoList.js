@@ -2,22 +2,11 @@ import React, { useState } from 'react';
 
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
+import useTodoList from './useTodoList';
 
 function TodoList() {
-  const [todos, setTodos] = useState([
-    {
-      text: 'Learn about React',
-      isCompleted: false
-    },
-    {
-      text: 'Meet friend for lunch',
-      isCompleted: false
-    },
-    {
-      text: 'Build really cool todo app',
-      isCompleted: false
-    }
-  ]);
+  const { list } = useTodoList();
+  const [todos, setTodos] = useState(list.items);
 
   const addTodo = text => {
     const newTodos = [...todos, { text }];
