@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TodoItem({ todo, index, toggleTodo, removeTodo }) {
+const TodoItem = ({ todo, index, toggleTodo, removeTodo }) => {
   return (
     <div
       className="todo"
@@ -16,6 +16,6 @@ function TodoItem({ todo, index, toggleTodo, removeTodo }) {
       </div>
     </div>
   );
-}
+};
 
 export default TodoItem;

@@ -4,7 +4,7 @@ import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import useTodoList from './useTodoList';
 
-function TodoList() {
+const TodoList = () => {
   const { addTodo, toggleTodo, removeTodo, todoList } = useTodoList();
 
   return (
@@ -23,6 +23,6 @@ function TodoList() {
       </div>
     </div>
   );
-}
+};
 
 export default TodoList;
