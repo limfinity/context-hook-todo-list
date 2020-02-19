@@ -1,25 +1,39 @@
-import { useContext } from 'react';
-import { TodoListContext } from './TodoListContext';
+import { useContext, useEffect, useCallback } from 'react';
+import { TodoListContext, fetchTodoList } from './TodoListContext';
 
 const useTodoList = () => {
   const [contextState, setContextState] = useContext(TodoListContext);
+  const todos = contextState.todos;
+
+  const updateTodos = useCallback(
+    newTodos => {
+      setContextState(state => ({ ...state, todos: newTodos }));
+    },
+    [setContextState]
+  );
 
   const addTodo = text => {
-    const newTodos = [...contextState.todos, { text }];
-    setContextState(state => ({ ...state, todos: newTodos }));
+    const newTodos = [...todos, { text }];
+    updateTodos(newTodos);
   };
 
   const toggleTodo = index => {
-    const newTodos = [...contextState.todos];
+    const newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
-    setContextState(state => ({ ...state, todos: newTodos }));
+    updateTodos(newTodos);
   };
 
   const removeTodo = index => {
-    const newTodos = [...contextState.todos];
+    const newTodos = [...todos];
     newTodos.splice(index, 1);
-    setContextState(state => ({ ...state, todos: newTodos }));
+    updateTodos(newTodos);
   };
+
+  useEffect(() => {
+    if (todos.length === 0) {
+      fetchTodoList().then(updateTodos);
+    }
+  }, [todos, updateTodos]);
 
   return {
     addTodo,

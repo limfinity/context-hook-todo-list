@@ -1,24 +1,11 @@
 import React, { useState } from 'react';
 
+import { fetchTodoList } from './TodoApi';
+
 const TodoListContext = React.createContext([{}, () => {}]);
 
 const TodoListProvider = props => {
-  const [state, setState] = useState({
-    todos: [
-      {
-        text: 'Learn about React',
-        isCompleted: false
-      },
-      {
-        text: 'Meet friend for lunch',
-        isCompleted: false
-      },
-      {
-        text: 'Build really cool todo app',
-        isCompleted: false
-      }
-    ]
-  });
+  const [state, setState] = useState({ todos: [] });
 
   return (
     <TodoListContext.Provider value={[state, setState]}>
@@ -27,4 +14,4 @@ const TodoListProvider = props => {
   );
 };
 
-export { TodoListContext, TodoListProvider };
+export { TodoListContext, TodoListProvider, fetchTodoList };
