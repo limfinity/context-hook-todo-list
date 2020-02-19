@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoItem = ({ todo, index, toggleTodo, removeTodo }) => {
+const TodoItem = ({ todo, toggleTodo, removeTodo }) => {
   return (
     <div className="todo">
       <span style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}>
@@ -10,13 +10,13 @@ const TodoItem = ({ todo, index, toggleTodo, removeTodo }) => {
       <div class="buttons">
         <button
           class="button is-rounded is-small is-primary is-outlined"
-          onClick={() => toggleTodo(index)}
+          onClick={() => toggleTodo(todo.id)}
         >
           {todo.isCompleted ? 'Open' : 'Complete'}
         </button>
         <button
           class="button is-rounded is-small is-danger is-outlined"
-          onClick={() => removeTodo(index)}
+          onClick={() => removeTodo(todo.id)}
         >
           x
         </button>

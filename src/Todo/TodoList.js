@@ -10,10 +10,9 @@ const TodoList = () => {
   return (
     <div className="app">
       <div className="todo-list">
-        {todoList.map((todo, index) => (
+        {todoList.map(todo => (
           <TodoItem
-            key={index}
-            index={index}
+            key={todo.id}
             todo={todo}
             toggleTodo={toggleTodo}
             removeTodo={removeTodo}

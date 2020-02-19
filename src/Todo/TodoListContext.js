@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-import { fetchTodoList } from './TodoApi';
+import {
+  createTodoAPI,
+  deleteTodoAPI,
+  fetchTodosAPI,
+  updateTodoAPI
+} from './TodoApi';
 
 const TodoListContext = React.createContext([{}, () => {}]);
 
@@ -14,4 +19,11 @@ const TodoListProvider = props => {
   );
 };
 
-export { TodoListContext, TodoListProvider, fetchTodoList };
+export {
+  TodoListContext,
+  TodoListProvider,
+  createTodoAPI as createTodo,
+  deleteTodoAPI as deleteTodo,
+  fetchTodosAPI as fetchTodos,
+  updateTodoAPI as updateTodo
+};

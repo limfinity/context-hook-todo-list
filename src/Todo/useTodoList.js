@@ -1,5 +1,11 @@
 import { useContext, useEffect, useCallback } from 'react';
-import { TodoListContext, fetchTodoList } from './TodoListContext';
+import {
+  TodoListContext,
+  createTodo,
+  deleteTodo,
+  fetchTodos,
+  updateTodo
+} from './TodoListContext';
 
 const useTodoList = () => {
   const [contextState, setContextState] = useContext(TodoListContext);
@@ -13,32 +19,53 @@ const useTodoList = () => {
   );
 
   const addTodo = text => {
-    const newTodos = [...todos, { text }];
-    updateTodos(newTodos);
+    const todo = { text, isCompleted: false };
+    const newTodos = [...todos, todo];
+
+    createTodo(todo)
+      .then(() => {
+        updateTodos(newTodos);
+      })
+      .catch(console.error);
   };
 
-  const toggleTodo = index => {
+  const toggleTodo = id => {
     const newTodos = [...todos];
+    const index = newTodos.map(todo => todo.id).indexOf(id);
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
-    updateTodos(newTodos);
+    const newTodo = newTodos[index];
+
+    updateTodo(newTodo)
+      .then(() => {
+        updateTodos(newTodos);
+      })
+      .catch(console.error);
   };
 
-  const removeTodo = index => {
+  const removeTodo = id => {
     const newTodos = [...todos];
+    const index = newTodos.map(todo => todo.id).indexOf(id);
     newTodos.splice(index, 1);
-    updateTodos(newTodos);
+
+    deleteTodo(id)
+      .then(() => {
+        updateTodos(newTodos);
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
     if (todos.length === 0) {
-      fetchTodoList().then(updateTodos);
+      fetchTodos()
+        .then(updateTodos)
+        .catch(console.error);
     }
   }, [todos, updateTodos]);
 
   return {
     addTodo,
     removeTodo,
-    todoList: contextState.todos,
+    todoList: todos,
     toggleTodo
   };
 };
