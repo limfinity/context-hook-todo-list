@@ -14,8 +14,8 @@ const TodoList = () => {
           <TodoItem
             key={todo.id}
             todo={todo}
-            toggleTodo={toggleTodo}
-            removeTodo={removeTodo}
+            onToggle={() => toggleTodo(todo.id)}
+            onRemove={() => removeTodo(todo.id)}
           />
         ))}
         <TodoForm addTodo={addTodo} />
