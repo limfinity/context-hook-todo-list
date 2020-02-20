@@ -9,9 +9,8 @@ var schema = {
         type: 'object',
         properties: {
           id: {
-            type: 'number',
-            unique: true,
-            minimum: 1
+            type: 'integer',
+            autoIncrement: true
           },
           text: {
             type: 'string',

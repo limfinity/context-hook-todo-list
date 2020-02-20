@@ -19,36 +19,36 @@ const useTodoList = () => {
   );
 
   const addTodo = text => {
-    const todo = { text, isCompleted: false };
-    const newTodos = [...todos, todo];
+    const newTodo = { text, isCompleted: false };
 
-    createTodo(todo)
-      .then(() => {
+    createTodo(newTodo)
+      .then(todo => {
+        const newTodos = [...todos, todo];
         updateTodos(newTodos);
       })
       .catch(console.error);
   };
 
   const toggleTodo = id => {
-    const newTodos = [...todos];
-    const index = newTodos.map(todo => todo.id).indexOf(id);
-    newTodos[index].isCompleted = !newTodos[index].isCompleted;
-    const newTodo = newTodos[index];
+    const index = todos.map(todo => todo.id).indexOf(id);
+    const newTodo = todos[index];
+    newTodo.isCompleted = !newTodo.isCompleted;
 
     updateTodo(newTodo)
-      .then(() => {
+      .then(todo => {
+        const newTodos = [...todos];
+        newTodos[index] = todo;
         updateTodos(newTodos);
       })
       .catch(console.error);
   };
 
   const removeTodo = id => {
-    const newTodos = [...todos];
-    const index = newTodos.map(todo => todo.id).indexOf(id);
-    newTodos.splice(index, 1);
-
     deleteTodo(id)
       .then(() => {
+        const newTodos = [...todos];
+        const index = newTodos.map(todo => todo.id).indexOf(id);
+        newTodos.splice(index, 1);
         updateTodos(newTodos);
       })
       .catch(console.error);
